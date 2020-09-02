@@ -243,7 +243,7 @@ Note: SQLTabs may highlight `name` and `description`. Use them as your column na
   * Create a `delete_product.sql` file.
 * `create_product.sql`:
   * The SQL should be able to add a new product to the `product` table.
-  * The SQL should have four parameters ( name, description, price, image_url ).
+  * The SQL should have four parameters ( name, description, price, i mage_url ).
 * `read_products.sql`:
   * The SQL should be able to return all products from the `product` table.
 * `read_product.sql`:
