@@ -2,8 +2,9 @@ module.exports = {
 
     create: (req, res, next) => {
         const dbInstance = req.app.get('db')
+        const {name, description, price, image_url} = req.body
 
-        dbInstance.create_product().then( () => 
+        dbInstance.create_product([name, description, price, image_url]).then( () => 
         res.sendStatus(200) )
         .catch( err => {
             res.status(500).send(
@@ -14,8 +15,9 @@ module.exports = {
 
     getOne: (req, res, next) => {
         const dbInstance = req.app.get('db')
+        const {id} = req.params
 
-        dbInstance.read_product().then(product => res.status(200).send(product))
+        dbInstance.read_product( id ).then(product => res.status(200).send(product))
         .catch(err => {res.status(500).send({
             errorMessage: "Something went wrong with the GETONE method." })
             console.log(err)
@@ -35,8 +37,9 @@ module.exports = {
 
     update: (req, res, next) => {
         const dbInstance = req.app.get('db')
+        const {params, query} = req /* <- IS REQ GOING TO SOMETHING? */
 
-        dbInstance.update_product().then( () => res.sendStatus(200))
+        dbInstance.update_product([params.id, query.desc]).then( () => res.sendStatus(200))
         .catch(err => {
             res.status(500).send(
             {errorMessage: "Something went wrong with the UPDATE method."})
@@ -46,8 +49,9 @@ module.exports = {
 
     delete: (req, res, next) => {
         const dbInstance = req.app.get('db')
+        const {id} = req.params 
 
-        dbInstance.delete_product().then( () => res.sendStatus(200))
+        dbInstance.delete_product( id ).then( () => res.sendStatus(200))
         .catch( err => {
             res.status(500).send({
                 errorMessage: "Something went wrong with DELETE method."})
