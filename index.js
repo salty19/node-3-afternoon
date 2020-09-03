@@ -20,7 +20,7 @@ app.post('/api/products', products_controller.create)
 app.get('/api/products', products_controller.getAll)
 app.get('/api/products/:id', products_controller.getOne)
 app.put('/api/products/:id', products_controller.update)
-app.delete('api/products/:id', products_controller.delete)
+app.delete('/api/products/:id', products_controller.delete)
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server listening on port ${SERVER_PORT}!`)
